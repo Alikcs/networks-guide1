@@ -1,22 +1,186 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="light">
 <head>
     <meta charset="UTF-8">
-    <title>Принципы сети</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Принципы сети - Компьютерные сети</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <h1>Принципы функциональной организации компьютерных сетей</h1>
-    <section>
-        <h2>Основные принципы</h2>
-        <p>Основные принципы, позволяющие эффективно организовать сеть:</p>
-        <ul>
-            <li>Измеримость (scalability)</li>
-            <li>Изолированность (isolation)</li>
-            <li>Устойчивость (resilience)</li>
-        </ul>
-        <img src="image9.jpg" alt="Принципы сети" width="400">
-    </section>
-    <a href="index.html">Назад на главную страницу</a>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">СетиПросто</a>
+            
+            <!-- Кнопка меню для мобильных -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <!-- Навигационные ссылки -->
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="routing_methods.html">Методы маршрутизации</a></li>
+                <li><a href="fixed_routing.html">Фиксированная</a></li>
+                <li><a href="adaptive_routing.html">Адаптивная</a></li>
+                <li><a href="network_principles.html">Принципы сети</a></li>
+                <li><a href="about.html">О сайте</a></li>
+                <li><button class="theme-toggle" id="themeToggle">🌙 Тёмная</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="content-card">
+            <h1>Принципы функциональной организации компьютерных сетей</h1>
+            
+            <section>
+                <h2>Основные принципы</h2>
+                <ul>
+                    <li><strong>Масштабируемость</strong> — способность сети расти без потери производительности</li>
+                    <li><strong>Отказоустойчивость</strong> — сохранение работоспособности при частичных сбоях</li>
+                    <li><strong>Безопасность</strong> — защита данных и ресурсов от несанкционированного доступа</li>
+                    <li><strong>Производительность</strong> — оптимизация скорости передачи и задержек</li>
+                </ul>
+                
+               <!-- График масштабируемости с осями -->
+            <svg width="100%" height="400" style="background:var(--card-bg); margin:20px 0; border-radius:10px; display: block;">
+                <!-- Заголовок -->
+                <text x="50%" y="8%" text-anchor="middle" font-size="24" font-weight="bold" fill="var(--text-color)">Зависимость производительности от масштаба сети</text>
+                
+                <!-- Ось Y -->
+                <line x1="15%" y1="75%" x2="15%" y2="15%" stroke="var(--text-color)" stroke-width="4"/>
+                <polygon points="15%,15% 12%,18% 18%,18%" fill="var(--text-color)"/>
+                <text x="0" y="0" class="axis-label"font-size="20" font-weight="bold" transform="rotate(-90) translate(-220, 15)" fill="var(--text-color)">Производительность</text>
+                
+                <!-- Ось X -->
+                <line x1="15%" y1="75%" x2="85%" y2="75%" stroke="var(--text-color)" stroke-width="4"/>
+                <polygon points="85%,75% 82%,72% 82%,78%" fill="var(--text-color)"/>
+                <text x="40%" y="90%" font-size="20" font-weight="bold" fill="var(--text-color)">Масштаб сети</text>
+                
+                <!-- Деления на оси Y -->
+                <line x1="12%" y1="65%" x2="15%" y2="65%" stroke="var(--text-color)" stroke-width="3"/>
+                <text x="7%" y="65%" font-size="18" font-weight="bold" fill="var(--text-color)" dy="5">Min</text>
+                
+                <line x1="12%" y1="50%" x2="15%" y2="50%" stroke="var(--text-color)" stroke-width="3"/>
+                
+                
+                <line x1="12%" y1="35%" x2="15%" y2="35%" stroke="var(--text-color)" stroke-width="3"/>
+                
+                
+                <line x1="12%" y1="20%" x2="15%" y2="20%" stroke="var(--text-color)" stroke-width="3"/>
+                <text x="7%" y="20%" font-size="18" font-weight="bold" fill="var(--text-color)" dy="5">Max</text>
+                
+                <!-- Деления на оси X -->
+                <line x1="30%" y1="75%" x2="30%" y2="77%" stroke="var(--text-color)" stroke-width="3"/>
+                <text x="30%" y="80%" font-size="18" font-weight="bold" fill="var(--text-color)">Малая</text>
+                
+                <line x1="50%" y1="75%" x2="50%" y2="77%" stroke="var(--text-color)" stroke-width="3"/>
+                <text x="50%" y="80%" font-size="18" font-weight="bold" fill="var(--text-color)">Средняя</text>
+                
+                <line x1="70%" y1="75%" x2="70%" y2="77%" stroke="var(--text-color)" stroke-width="3"/>
+                <text x="70%" y="80%" font-size="18" font-weight="bold" fill="var(--text-color)">Крупная</text>
+                
+                <!-- Линия графика -->
+                <polyline points="20%,65% 35%,55% 55%,45% 75%,35%" fill="none" stroke="var(--primary-color)" stroke-width="6"/>
+                
+                <!-- Точки на графике -->
+                <circle cx="20%" cy="65%" r="8" fill="var(--primary-color)"/>
+                <circle cx="35%" cy="55%" r="8" fill="var(--primary-color)"/>
+                <circle cx="55%" cy="45%" r="8" fill="var(--primary-color)"/>
+                <circle cx="75%" cy="35%" r="8" fill="var(--primary-color)"/>
+                
+                <!-- Подписи точек -->
+                <text x="20%" y="70%" text-anchor="middle" font-size="18" font-weight="bold" fill="var(--text-color)">Старт</text>
+                <text x="35%" y="60%" text-anchor="middle" font-size="18" font-weight="bold" fill="var(--text-color)">Рост</text>
+                <text x="55%" y="50%" text-anchor="middle" font-size="18" font-weight="bold" fill="var(--text-color)">Стабильность</text>
+                <text x="75%" y="40%" text-anchor="middle" font-size="18" font-weight="bold" fill="var(--text-color)">Оптимум</text>
+            </svg>
+                
+                <p style="text-align: center; font-style: italic; margin-top: 1rem;">График показывает, как правильно спроектированная сеть поддерживает производительность при увеличении масштаба</p>
+            </section>
+
+            <section>
+                <h2>Дополнительные принципы</h2>
+                <ul>
+                    <li><strong>Модульность</strong> — возможность замены компонентов без перепроектирования</li>
+                    <li><strong>Стандартизация</strong> — соблюдение открытых стандартов (TCP/IP, Ethernet)</li>
+                    <li><strong>Управляемость</strong> — мониторинг и контроль работы сети</li>
+                    <li><strong>Совместимость</strong> — взаимодействие разнородных систем и протоколов</li>
+                    <li><strong>Экономическая эффективность</strong> — баланс между стоимостью и производительностью</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Принципы проектирования сетей</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                    <div style="background: var(--card-bg); padding: 1.5rem; border-radius: 10px;">
+                        <h3 style="margin-top: 0; color: var(--primary-color);">Иерархическая модель</h3>
+                        <p>Разделение сети на ядро, распределение и доступ для улучшения масштабируемости</p>
+                    </div>
+                    <div style="background: var(--card-bg); padding: 1.5rem; border-radius: 10px;">
+                        <h3 style="margin-top: 0; color: var(--primary-color);">Избыточность</h3>
+                        <p>Дублирование критических компонентов для обеспечения отказоустойчивости</p>
+                    </div>
+                    <div style="background: var(--card-bg); padding: 1.5rem; border-radius: 10px;">
+                        <h3 style="margin-top: 0; color: var(--primary-color);">Безопасность</h3>
+                        <p>Многоуровневая защита на границе сети и внутри нее</p>
+                    </div>
+                </div>
+            </section>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="index.html" class="btn">Вернуться на главную</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-quote">
+                <p>"Простота — это высшая степень сложности."</p>
+                <p style="margin-top: 1rem;">— Леонардо да Винчи</p>
+            </div>
+            
+            <div class="footer-sections">
+                <div class="footer-links">
+                    <h3>Быстрые ссылки</h3>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="routing_methods.html">Методы маршрутизации</a></li>
+                        <li><a href="network_principles.html">Принципы сети</a></li>
+                        <li><a href="about.html">О сайте</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                      <h3>Следите за обновлениями</h3>
+                      <div class="social-icons">
+                          <a href="https://twitter.com/yourprofile" target="_blank" aria-label="Twitter">
+                              <i class="fab fa-twitter"></i>
+                          </a>
+                          <a href="https://github.com/yourprofile" target="_blank" aria-label="GitHub">
+                              <i class="fab fa-github"></i>
+                          </a>
+                          <a href="https://linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn">
+                              <i class="fab fa-linkedin"></i>
+                          </a>
+                          <a href="https://t.me/yourprofile" target="_blank" aria-label="Telegram">
+                              <i class="fab fa-telegram"></i>
+                          </a>
+                      </div>
+                  </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 СетиПросто. Все права защищены. | Изучаем компьютерные сети вместе</p>
+        </div>
+    </footer>
+
+     <!-- Подключаем отдельный JS файл -->
+    <script src="script.js"></script>
 </body>
 </html>

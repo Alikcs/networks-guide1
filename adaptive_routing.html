@@ -1,22 +1,171 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="light">
 <head>
     <meta charset="UTF-8">
-    <title>Методы адаптивной маршрутизации</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Адаптивная маршрутизация - Компьютерные сети</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <h1>Методы адаптивной маршрутизации</h1>
-    <p>Адаптивная маршрутизация использует алгоритмы для динамического выбора маршрута:</p>
-    <section>
-        <h2>Классификация методов</h2>
-        <ul>
-            <li>Алгоритмы маршрутизации с состоянием канала</li>
-            <li>Протоколы динамической маршрутизации</li>
-            <li>Методы уменьшения задержек</li>
-        </ul>
-        <img src="image7.jpg" alt="Алгоритмы маршрутизации" width="400">
-    </section>
-    <a href="index.html">Назад на главную страницу</a>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">СетиПросто</a>
+            
+            <!-- Кнопка меню для мобильных -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <!-- Навигационные ссылки -->
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="routing_methods.html">Методы маршрутизации</a></li>
+                <li><a href="fixed_routing.html">Фиксированная</a></li>
+                <li><a href="adaptive_routing.html">Адаптивная</a></li>
+                <li><a href="network_principles.html">Принципы сети</a></li>
+                <li><a href="about.html">О сайте</a></li>
+                <li><button class="theme-toggle" id="themeToggle">🌙 Тёмная</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="content-card">
+            <h1>Адаптивная маршрутизация</h1>
+            <p>Адаптивная маршрутизация автоматически изменяет маршруты передачи данных в зависимости от текущего состояния сети, что позволяет гибко реагировать на сбои, перегрузки и изменения топологии.</p>
+            
+            <section>
+                <h2>Классификация методов</h2>
+                <ul>
+                    <li><strong>Дистанционно-векторные алгоритмы</strong> (RIP) — обмен информацией о расстоянии до узлов</li>
+                    <li><strong>Link-State алгоритмы</strong> (OSPF) — построение полной карты сети</li>
+                    <li><strong>Гибридные подходы</strong> (EIGRP) — комбинация методов</li>
+                    <li><strong>Path-Vector протоколы</strong> (BGP) — для межсетевого взаимодействия</li>
+                </ul>
+                
+             <!-- Анимация изменения маршрута -->
+            <svg width="100%" height="300" style="background:var(--card-bg); margin:20px 0; border-radius:10px; display: block;">
+                <text x="50%" y="10%" text-anchor="middle" font-size="24" font-weight="bold" fill="var(--text-color)">Адаптивное изменение маршрута при сбое</text>
+                
+                <!-- Узлы сети -->
+                <circle cx="20%" cy="50%" r="25" fill="var(--primary-color)"/>
+                <circle cx="40%" cy="35%" r="25" fill="var(--primary-color)"/>
+                <circle cx="60%" cy="50%" r="25" fill="var(--primary-color)"/>
+                <circle cx="40%" cy="65%" r="25" fill="var(--primary-color)"/>
+                
+                <!-- Основной маршрут -->
+                <line x1="23%" y1="50%" x2="37%" y2="35%" stroke="var(--primary-color)" stroke-width="6"/>
+                <line x1="43%" y1="35%" x2="57%" y2="50%" stroke="var(--primary-color)" stroke-width="6"/>
+                
+                <!-- Альтернативный маршрут -->
+                <line x1="23%" y1="50%" x2="37%" y2="65%" stroke="var(--primary-color)" stroke-dasharray="10,10" stroke-width="5"/>
+                <line x1="43%" y1="65%" x2="57%" y2="50%" stroke="var(--primary-color)" stroke-dasharray="10,10" stroke-width="5"/>
+                
+                <!-- Подписи узлов -->
+                <text x="20%" y="40%" text-anchor="middle" font-size="20" font-weight="bold" fill="var(--text-color)">Источник</text>
+                <text x="60%" y="40%" text-anchor="middle" font-size="20" font-weight="bold" fill="var(--text-color)">Назначение</text>
+                
+                <!-- Подписи путей -->
+                <text x="40%" y="25%" text-anchor="middle" font-size="18" font-weight="bold" fill="var(--primary-color)">Основной путь</text>
+                <text x="40%" y="78%" text-anchor="middle" font-size="18" font-weight="bold" fill="var(--primary-color)">Резервный путь</text>
+                
+                <!-- Индикатор сбоя -->
+                <line x1="37%" y1="33%" x2="43%" y2="37%" stroke="red" stroke-width="5"/>
+                <line x1="43%" y1="33%" x2="37%" y2="37%" stroke="red" stroke-width="5"/>
+                <text x="48%" y="35%" text-anchor="start" font-size="18" font-weight="bold" fill="red">Сбой!</text>
+            </svg>
+            </section>
+
+            <section>
+                <h2>Преимущества адаптивной маршрутизации</h2>
+                <ul>
+                    <li>Автоматическое обходное маршрутизирование при сбоях</li>
+                    <li>Балансировка нагрузки между каналами</li>
+                    <li>Эффективное использование ресурсов сети</li>
+                    <li>Масштабируемость для крупных сетей</li>
+                    <li>Автоматическое обнаружение новых узлов и путей</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Недостатки</h2>
+                <ul>
+                    <li>Сложность настройки и администрирования</li>
+                    <li>Высокие требования к вычислительным ресурсам</li>
+                    <li>Накладные расходы на обмен служебной информацией</li>
+                    <li>Возможность нестабильности при частых изменениях топологии</li>
+                    <li>Сложность отладки и диагностики проблем</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h2>Когда использовать адаптивную маршрутизацию?</h2>
+                <div style="background: var(--card-bg); padding: 1.5rem; border-radius: 10px; margin-top: 1.5rem; border-left: 4px solid var(--accent-color);">
+                    <h3 style="margin-top: 0;">Рекомендуемые сценарии:</h3>
+                    <ul>
+                        <li>Крупные корпоративные сети со сложной топологией</li>
+                        <li>Сети с частыми изменениями конфигурации</li>
+                        <li>Сети, требующие высокой отказоустойчивости</li>
+                        <li>Интернет-провайдеры и магистральные сети</li>
+                        <li>Сети с переменной нагрузкой и требованием балансировки</li>
+                    </ul>
+                </div>
+            </section>
+
+            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                <a href="fixed_routing.html" class="btn">← Назад к фиксированной маршрутизации</a>
+                <a href="network_principles.html" class="btn" style="background: var(--secondary-color);">Далее: Принципы сети →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-quote">
+                <p>"Простота — это высшая степень сложности."</p>
+                <p style="margin-top: 1rem;">— Леонардо да Винчи</p>
+            </div>
+            
+            <div class="footer-sections">
+                <div class="footer-links">
+                    <h3>Быстрые ссылки</h3>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="routing_methods.html">Методы маршрутизации</a></li>
+                        <li><a href="network_principles.html">Принципы сети</a></li>
+                        <li><a href="about.html">О сайте</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                      <h3>Следите за обновлениями</h3>
+                      <div class="social-icons">
+                          <a href="https://twitter.com/yourprofile" target="_blank" aria-label="Twitter">
+                              <i class="fab fa-twitter"></i>
+                          </a>
+                          <a href="https://github.com/yourprofile" target="_blank" aria-label="GitHub">
+                              <i class="fab fa-github"></i>
+                          </a>
+                          <a href="https://linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn">
+                              <i class="fab fa-linkedin"></i>
+                          </a>
+                          <a href="https://t.me/yourprofile" target="_blank" aria-label="Telegram">
+                              <i class="fab fa-telegram"></i>
+                          </a>
+                      </div>
+                  </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 СетиПросто. Все права защищены. | Изучаем компьютерные сети вместе</p>
+        </div>
+    </footer>
+
+     <!-- Подключаем отдельный JS файл -->
+    <script src="script.js"></script>
 </body>
 </html>

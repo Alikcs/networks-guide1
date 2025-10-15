@@ -1,41 +1,137 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Принципы функциональной организации компьютерных сетей</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 <body>
-    <div id="banner">
-        Добро пожаловать на сайт о компьютерных сетях!
-    </div>
-    <div id="container">
-        <div id="catalog">
-            <h2>Каталог страниц</h2>
-            <ul>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">СетиПросто</a>
+            
+            <!-- Кнопка меню для мобильных -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <!-- Навигационные ссылки -->
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Главная</a></li>
                 <li><a href="routing_methods.html">Методы маршрутизации</a></li>
-                <li><a href="fixed_routing.html">Методы фиксированной маршрутизации</a></li>
-                <li><a href="adaptive_routing.html">Методы адаптивной маршрутизации</a></li>
+                <li><a href="fixed_routing.html">Фиксированная</a></li>
+                <li><a href="adaptive_routing.html">Адаптивная</a></li>
                 <li><a href="network_principles.html">Принципы сети</a></li>
                 <li><a href="about.html">О сайте</a></li>
+                <li><button class="theme-toggle" id="themeToggle">🌙 Тёмная</button></li>
             </ul>
-        </div>
-        <div id="content">
-            <marquee>Добро пожаловать на сайт о компьютерных сетях!</marquee>
-            <h1>Главная страница</h1>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Компьютерные сети</h1>
+        <p>Изучаем основы сетевых технологий, маршрутизацию и принципы организации современных сетей</p>
+    </section>
+
+    <main>
+        <div class="content-card">
             <section>
-                <h2>Введение</h2>
-                <p>На этом сайте вы сможете узнать о принципах функциональной организации компьютерных сетей.</p>
-                <img src="image1.jpg" alt="Компьютерные сети" width="400">
-                <img src="image2.jpg" alt="Маршрутизация" width="400">
+                <h2>Введение в компьютерные сети</h2>
+                <p>Современные компьютерные сети представляют собой сложные распределенные системы, обеспечивающие обмен данными между устройствами. Основные аспекты изучения:</p>
+                <ul>
+                    <li>Архитектура сетей (клиент-сервер, P2P)</li>
+                    <li>Модели взаимодействия (OSI, TCP/IP)</li>
+                    <li>Методы передачи данных и управления потоком</li>
+                    <li>Принципы маршрутизации и коммутации</li>
+                </ul>
+                
+                <svg width="100%" height="300" style="background:#f5f5f5; margin:20px 0; border-radius:10px;">
+                    <text x="50%" y="30" text-anchor="middle" font-size="16" font-weight="bold">Сетевая модель OSI</text>
+                    <rect x="20%" y="50" width="60%" height="30" fill="var(--primary-color)" opacity="0.9"/>
+                    <text x="50%" y="70" text-anchor="middle" font-size="12" fill="white">7. Прикладной уровень</text>
+                    <rect x="20%" y="85" width="60%" height="30" fill="var(--primary-color)" opacity="0.8"/>
+                    <text x="50%" y="105" text-anchor="middle" font-size="12" fill="white">6. Представительский</text>
+                    <rect x="20%" y="120" width="60%" height="30" fill="var(--primary-color)" opacity="0.7"/>
+                    <text x="50%" y="140" text-anchor="middle" font-size="12" fill="white">5. Сеансовый</text>
+                    <rect x="20%" y="155" width="60%" height="30" fill="var(--primary-color)" opacity="0.6"/>
+                    <text x="50%" y="175" text-anchor="middle" font-size="12" fill="white">4. Транспортный</text>
+                    <rect x="20%" y="190" width="60%" height="30" fill="var(--primary-color)" opacity="0.5"/>
+                    <text x="50%" y="210" text-anchor="middle" font-size="12" fill="white">3. Сетевой</text>
+                    <rect x="20%" y="225" width="60%" height="30" fill="var(--primary-color)" opacity="0.4"/>
+                    <text x="50%" y="245" text-anchor="middle" font-size="12" fill="white">2. Канальный</text>
+                    <rect x="20%" y="260" width="60%" height="30" fill="var(--primary-color)" opacity="0.3"/>
+                    <text x="50%" y="280" text-anchor="middle" font-size="12" fill="white">1. Физический</text>
+                </svg>
             </section>
+        </div>
+
+        <div class="content-card">
             <section>
                 <h2>Что такое маршрутизация?</h2>
-                <p>Маршрутизация - это процесс выбора пути для передачи данных в сети. Рассмотрим основные методы маршрутизации.</p>
-                <img src="network_diagram.jpg" alt="Схема сети" width="400">
+                <p>Маршрутизация - процесс определения оптимального пути передачи данных от источника к получателю в составной сети. Ключевые концепции:</p>
+                <ul>
+                    <li>Таблицы маршрутизации и алгоритмы их заполнения</li>
+                    <li>Метрики маршрутизации (задержка, пропускная способность)</li>
+                    <li>Протоколы внутреннего и внешнего шлюза</li>
+                    <li>Статические и динамические методы маршрутизации</li>
+                </ul>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="routing_methods.html" class="btn">Изучить методы маршрутизации</a>
+                </div>
             </section>
         </div>
-    </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-quote">
+                <p>"Простота — это высшая степень сложности."</p>
+                <p style="margin-top: 1rem;">— Леонардо да Винчи</p>
+            </div>
+            
+            <div class="footer-sections">
+                <div class="footer-links">
+                    <h3>Быстрые ссылки</h3>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="routing_methods.html">Методы маршрутизации</a></li>
+                        <li><a href="network_principles.html">Принципы сети</a></li>
+                        <li><a href="about.html">О сайте</a></li>
+                    </ul>
+                </div>
+                
+                  <div class="footer-social">
+                      <h3>Следите за обновлениями</h3>
+                      <div class="social-icons">
+                          <a href="https://twitter.com/yourprofile" target="_blank" aria-label="Twitter">
+                              <i class="fab fa-twitter"></i>
+                          </a>
+                          <a href="https://github.com/yourprofile" target="_blank" aria-label="GitHub">
+                              <i class="fab fa-github"></i>
+                          </a>
+                          <a href="https://linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn">
+                              <i class="fab fa-linkedin"></i>
+                          </a>
+                          <a href="https://t.me/yourprofile" target="_blank" aria-label="Telegram">
+                              <i class="fab fa-telegram"></i>
+                          </a>
+                      </div>
+                  </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 СетиПросто. Все права защищены. | Изучаем компьютерные сети вместе</p>
+        </div>
+    </footer>
+
+     <!-- Подключаем отдельный JS файл -->
+    <script src="script.js"></script>
 </body>
 </html>

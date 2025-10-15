@@ -1,101 +1,906 @@
+:root {
+    --primary-color: #00005c;
+    --secondary-color: #4a4aff;
+    --accent-color: #00d4ff;
+    --text-color: #333;
+    --bg-color: #f0f4ff;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --header-bg: rgba(255, 255, 255, 0.95);
+    --footer-bg: var(--primary-color);
+    --shadow: 0 4px 20px rgba(0, 0, 92, 0.1);
+}
+
+[data-theme="dark"] {
+    --primary-color: #4a4aff;
+    --secondary-color: #00d4ff;
+    --accent-color: #ff6b9d;
+    --text-color: #f0f0f0;
+    --bg-color: #0a0a1a;
+    --card-bg: rgba(30, 30, 60, 0.9);
+    --header-bg: rgba(10, 10, 30, 0.95);
+    --footer-bg: #0a0a1a;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Исправление цветов SVG для темной темы */
+[data-theme="dark"] svg text {
+    fill: white !important;
+}
+
+[data-theme="dark"] svg {
+    background-color: var(--card-bg) !important;
+}
+
+/* Улучшение контрастности для таблиц в темной теме */
+[data-theme="dark"] table {
+    background: var(--header-bg);
+}
+
+[data-theme="dark"] td {
+    background: var(--card-bg);
+    color: var(--text-color);
+}
+
+/* Базовые стили */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+}
+
 body {
     margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #e7f0fa; /* Светло-синий фон */
-    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(74, 74, 255, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(0, 212, 255, 0.05) 0%, transparent 20%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-#banner {
-    background-color: #007acc; /* Цвет фона баннера */
+/* Паттерн сетевых иконок */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2300005c' fill-opacity='0.03'%3E%3Cpath d='M20 20c0-5 5-10 5-10s5 5 5 10-5 10-5 10-5-5-5-10z'/%3E%3Cpath d='M20 20c0 5-5 10-5 10s-5-5-5-10 5-10 5-10 5 5 5 10z'/%3E%3C/g%3E%3C/svg%3E");
+    z-index: -1;
+}
+
+[data-theme="dark"] body::before {
+    background-image: 
+        url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%234a4aff' fill-opacity='0.05'%3E%3Cpath d='M20 20c0-5 5-10 5-10s5 5 5 10-5 10-5 10-5-5-5-10z'/%3E%3Cpath d='M20 20c0 5-5 10-5 10s-5-5-5-10 5-10 5-10 5 5 5 10z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Header */
+header {
+    background-color: var(--header-bg);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 0;
+}
+/* Main Content */
+main {
+    margin-top: 0;
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 3rem;
+}
+
+.content-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: fadeIn 0.6s ease-out;
+}
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: relative;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-decoration: none;
+    z-index: 1001;
+}
+
+/* Desktop Navigation */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-size: 0.9rem;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    background-color: var(--primary-color);
     color: white;
+}
+
+.theme-toggle {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 1rem;
+}
+
+.theme-toggle:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* Mobile Menu Button */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: left;
+}
+
+/* Hero Section */
+.hero {
     text-align: center;
-    padding: 10px 0; /* Отступы сверху и снизу */
-    width: 100%; /* Ширина баннера 100% */
-    height: auto; /* Автоматическая высота */
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
 }
 
-#container {
-    display: flex;  /* Flexbox для организации структуры */
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
-#catalog {
-    width: 250px; /* Ширина каталога */
-    padding: 20px;
-    background-color: #fff; /* Белый фон для каталога */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для каталога */
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    position: relative;
 }
 
-#content {
-    flex: 1; /* Гибкая ширина контента */
-    padding: 20px;
-    background-color: #fff; /* Белый фон для контента */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для контента */
-    margin-top: 20px; /* Отступ сверху */
+.hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
 }
 
-h1, h2 {
-    color: #003366; /* Темно-синий для заголовков */
+
+
+/* Footer */
+footer {
+    background-color: var(--footer-bg);
+    color: white;
+    padding: 3rem 0 2rem;
+    margin-top: auto;
+}
+.footer-sections {
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
 }
 
-h1 {
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+}
+
+.footer-quote {
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    border-left: 3px solid var(--accent-color);
+    padding-left: 1rem;
+}
+
+.footer-links h3,
+.footer-social h3 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--accent-color);
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--accent-color);
+}
+
+.footer-bottom {
     text-align: center;
-    margin-bottom: 20px;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-h2 {
-    margin-top: 30px;
+/* Элементы контента */
+h1, h2, h3 {
+    color: var(--primary-color);
 }
 
-marquee {
-    font-size: 20px; /* Размер шрифта бегущей строки */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3 {
+    color: var(--accent-color);
 }
 
 section {
-    margin-bottom: 30px; /* Отступ между секциями */
-}
-
-ul {
-    list-style-type: square;
-    margin-left: 20px;
+    margin-bottom: 2rem;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table, th, td {
-    border: 1px solid #007acc; 
-}
-
-th, td {
-    padding: 15px; 
+    margin: 1.5rem 0;
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
 }
 
 th {
-    background-color: #007acc; 
-    color: white; 
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    text-align: left;
 }
 
 td {
-    background-color: #f4faff; 
+    padding: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-a {
+[data-theme="dark"] td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Кнопки */
+.btn {
     display: inline-block;
-    margin-top: 20px;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
     text-decoration: none;
-    color: #005bb5; 
-    font-weight: bold;
-    padding: 10px 15px;
-    border: 1px solid #005bb5; 
-    border-radius: 5px; 
-    background-color: #e7f0fa; 
-    transition: background-color 0.3s, color 0.3s; 
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    white-space: normal;
+    word-wrap: break-word;
 }
 
-a:hover {
-    background-color: #005bb5; 
-    color: white; 
+.btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
+
+.buttons-row {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.buttons-row .btn {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ==================== */
+/* ИСПРАВЛЕНИЯ ДЛЯ АДАПТИВНОСТИ */
+/* ==================== */
+
+/* Контейнер для таблицы со скроллом */
+/* Дополнительные стили для таблицы со скроллом */
+/* Стили для таблицы со скроллом */
+.table-container {
+    width: 100%;
+    margin: 1.5rem 0;
+}
+
+.table-scroll {
+    overflow-x: auto;
+    border-radius: 10px;
+    background: var(--card-bg);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    -webkit-overflow-scrolling: touch;
+}
+
+.table-scroll table {
+    width: 100%;
+    min-width: 700px;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+.table-scroll th,
+.table-scroll td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+}
+
+[data-theme="dark"] .table-scroll th,
+[data-theme="dark"] .table-scroll td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.table-scroll th {
+    background: var(--primary-color);
+    color: white;
+    font-weight: bold;
+    position: sticky;
+    left: 0;
+}
+
+.table-scroll tr:nth-child(even) {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="dark"] .table-scroll tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.table-scroll tr:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .table-scroll tr:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Стили для скроллбара */
+.table-scroll::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-scroll::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 4px 4px;
+}
+
+.table-scroll::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+.table-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* Для Firefox */
+.table-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) rgba(0, 0, 0, 0.1);
+}
+
+.areas-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+
+/* Адаптивный SVG */
+.svg-responsive {
+    max-width: 100%;
+    height: auto;
+}
+/* Стили для иконок соцсетей */
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.social-icons a:hover {
+    background: var(--accent-color);
+    transform: translateY(-3px);
+    color: white;
+}
+
+/* Для темной темы */
+[data-theme="dark"] .social-icons a {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="dark"] .social-icons a:hover {
+    background: var(--accent-color);
+}
+/* ==================== */
+/* МЕДИА-ЗАПРОСЫ */
+/* ==================== */
+
+/* Планшеты и маленькие ноутбуки */
+
+/* Добавь этот код в раздел для планшетов и мобильных */
+
+@media (max-width: 968px) {
+     /* Убедимся, что шапка всегда сверху */
+    header {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
+    main {
+        margin-top: 80px; /* Добавляем отступ сверху */
+    }
+    body.menu-open {
+        position: fixed;
+        width: 100%;
+        overflow: hidden;
+    }
+    
+    .nav-links.active {
+        right: 0;
+        display: flex !important;
+    }
+    
+    .hero {
+        margin-top: 0;
+        padding-top: 6rem;
+    }
+    
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 85%;
+        max-width: 300px;
+        background-color: var(--header-bg);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 5rem 1.5rem 2rem;
+        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.2);
+        gap: 0;
+        z-index: 999;
+        overflow-y: auto;
+        transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(2px);
+        z-index: 998;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .nav-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .nav-links li {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 1rem;
+        border-radius: 10px;
+        font-size: 1rem;
+        text-align: left;
+    }
+    
+    .theme-toggle {
+        margin: 1rem 0 0 0;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg);
+    }
+    
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg);
+    }
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .footer-sections {
+        flex-direction: column;
+        gap: 2rem;
+    }
+}
+
+/* Мобильные устройства */
+@media (max-width: 768px) {
+    main {
+        margin-top:70px; /* Добавляем отступ сверху */
+    }
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+    
+    .footer-quote {
+        text-align: center;
+        border-left: none;
+        padding-left: 0;
+        border-top: 3px solid var(--accent-color);
+        padding-top: 1rem;
+    }
+    
+    .footer-sections {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .footer-links ul {
+        display: inline-block;
+        text-align: left;
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
+    
+    .areas-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .buttons-row {
+        flex-direction: column;
+    }
+    
+    .buttons-row .btn {
+        min-width: auto;
+    }
+    .table-container {
+        margin: 1rem -1rem;
+    }
+    
+    .table-scroll {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+    
+    .table-scroll table {
+        min-width: 600px;
+    }
+    
+    .table-scroll th,
+    .table-scroll td {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.9rem;
+    }
+    /* Для графиков и диаграмм */
+    svg text {
+        font-size: 12px !important;
+    }
+    
+    /* Для длинных слов в графиках - принудительный перенос */
+    .svg-responsive text,
+    svg text {
+        word-wrap: break-word !important;
+        white-space: normal !important;
+    }
+    
+    /* Специфичные исправления для графика масштабируемости */
+    svg text[text-anchor="middle"] {
+        font-size: 8px !important;
+    }
+    
+    /* Для подписей на графиках */
+    svg text[font-size="12"] {
+        font-size: 9px !important;
+    }
+    
+    svg text[font-size="10"] {
+        font-size: 7px !important;
+    }
+    
+    /* Для заголовков графиков */
+    svg text[font-size="20"] {
+        font-size: 12px !important;
+    }
+    
+    /* Уменьшаем размер точек на графиках */
+    svg circle[r="4"] {
+        r: 3;
+    }
+    
+    /* Для таблицы методов маршрутизации */
+    .table-scroll table {
+        font-size: 12px;
+    }
+    
+    .table-scroll th,
+    .table-scroll td {
+        padding: 0.5rem;
+        white-space: normal; /* Разрешаем перенос слов в таблице */
+    }
+    svg text[x="5%"],
+    svg text[x="8%"],
+    svg text[x="10%"] {
+        font-size: 7px !important;
+    }
+}
+
+
+/* Маленькие мобильные устройства */
+@media (max-width: 480px) {
+    main {
+        margin-top: 70px; /* Добавляем отступ сверху */
+    }
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    nav {
+        padding: 1rem;
+    }
+    
+    main {
+        padding: 0 1rem 2rem;
+    }
+    
+    .content-card {
+        padding: 1.5rem;
+        margin: 0 0 1rem 0;
+    }
+    
+    footer {
+        padding: 2rem 1rem 1rem;
+    }
+    
+    .footer-quote {
+        font-size: 0.9rem;
+    }
+    
+    .footer-links ul {
+        gap: 0.3rem;
+    }
+    
+    .social-icons {
+        gap: 0.7rem;
+    }
+    
+    .social-icons a {
+        font-size: 1.3rem;
+    }
+    
+   .buttons-row {
+        flex-direction: column;
+    }
+    
+    .buttons-row .btn {
+        min-width: auto;
+    }
+    
+    .table-scroll table {
+        min-width: auto;
+    }
+    
+    .table-scroll th,
+    .table-scroll td {
+        padding: 0.6rem 0.4rem;
+        font-size: 0.85rem;
+    }
+    svg text {
+        font-size: 8px !important;
+    }
+    
+    svg text[font-size="16"] {
+        font-size: 10px !important;
+    }
+    
+    svg text[font-size="12"] {
+        font-size: 7px !important;
+    }
+    
+    /* Еще больше уменьшаем таблицу */
+    .table-scroll table {
+        font-size: 11px;
+    }
+    
+    .table-scroll th,
+    .table-scroll td {
+        padding: 0.4rem 0.3rem;
+    }
+}
+
+/* Дополнительные улучшения читаемости */
+.content-card svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Очень маленькие экраны */
+@media (max-width: 360px) {
+    main {
+        margin-top: 65px; /* Добавляем отступ сверху */
+    }
+    .logo {
+        font-size: 1.2rem;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .nav-links {
+        width: 100%;
+        right: -100%;
+    }
+    
+    .content-card {
+        padding: 1rem;
+    }
+}
+
+
