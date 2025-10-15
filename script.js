@@ -188,3 +188,30 @@ const NetworkUtils = {
         return Array.from({length: 4}, () => Math.floor(Math.random() * 256)).join('.');
     }
 };
+// Фиксация навигации через JavaScript
+function fixNavigation() {
+    const header = document.querySelector('header');
+    const main = document.querySelector('main');
+    
+    if (header && main) {
+        // Принудительно фиксируем шапку
+        header.style.position = 'fixed';
+        header.style.top = '0';
+        header.style.left = '0';
+        header.style.right = '0';
+        header.style.zIndex = '10000';
+        
+        // Добавляем отступ для основного контента
+        const headerHeight = header.offsetHeight;
+        main.style.marginTop = headerHeight + 'px';
+    }
+}
+
+// Вызываем при загрузке и при изменении размера окна
+document.addEventListener('DOMContentLoaded', function() {
+    fixNavigation();
+    setTimeout(fixNavigation, 100); // Двойная гаранция
+});
+
+window.addEventListener('resize', fixNavigation);
+window.addEventListener('load', fixNavigation);

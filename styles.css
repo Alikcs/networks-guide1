@@ -109,6 +109,11 @@ main {
     border: 1px solid rgba(255, 255, 255, 0.2);
     animation: fadeIn 0.6s ease-out;
 }
+/* Дополнительные улучшения читаемости */
+.content-card svg {
+    max-width: 100%;
+    height: auto;
+}
 nav {
     max-width: 1200px;
     margin: 0 auto;
@@ -410,12 +415,9 @@ td {
 }
 
 /* ==================== */
-/* ИСПРАВЛЕНИЯ ДЛЯ АДАПТИВНОСТИ */
+/* АДАПТИВНОСТь */
 /* ==================== */
 
-/* Контейнер для таблицы со скроллом */
-/* Дополнительные стили для таблицы со скроллом */
-/* Стили для таблицы со скроллом */
 .table-container {
     width: 100%;
     margin: 1.5rem 0;
@@ -431,8 +433,7 @@ td {
 }
 
 .table-scroll table {
-    width: 100%;
-    min-width: 700px;
+    width: 100%;    
     border-collapse: collapse;
     margin: 0;
 }
@@ -442,20 +443,13 @@ td {
     padding: 1rem;
     text-align: left;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    white-space: nowrap;
+    white-space: normal;
+    word-wrap: break-word;
 }
 
 [data-theme="dark"] .table-scroll th,
 [data-theme="dark"] .table-scroll td {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.table-scroll th {
-    background: var(--primary-color);
-    color: white;
-    font-weight: bold;
-    position: sticky;
-    left: 0;
 }
 
 .table-scroll tr:nth-child(even) {
@@ -493,11 +487,7 @@ td {
     background: var(--secondary-color);
 }
 
-/* Для Firefox */
-.table-scroll {
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary-color) rgba(0, 0, 0, 0.1);
-}
+
 
 .areas-container {
     display: grid;
@@ -675,6 +665,7 @@ td {
     main {
         margin-top:70px; /* Добавляем отступ сверху */
     }
+    
     .footer-content {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -715,24 +706,34 @@ td {
     .buttons-row .btn {
         min-width: auto;
     }
-    .table-container {
-        margin: 1rem -1rem;
+   .table-container {
+        margin: 1rem 0;
     }
     
     .table-scroll {
-        border-radius: 0;
-        border-left: none;
-        border-right: none;
+        border-radius: 10px; /* Верните скругление */
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     .table-scroll table {
-        min-width: 600px;
+        font-size: 14px;
     }
     
     .table-scroll th,
     .table-scroll td {
-        padding: 0.75rem 0.5rem;
+        padding: 0.8rem 0.5rem;
+        white-space: normal;
+        word-wrap: break-word;
+        /* ДОБАВИТЬ: */
+        word-break: break-word;
+        line-height: 1.4;
+    }
+    
+    /* Уменьшим размер заголовков таблицы на мобильных */
+    .table-scroll th {
         font-size: 0.9rem;
+        padding: 0.6rem 0.5rem;
     }
     /* Для графиков и диаграмм */
     svg text {
@@ -770,16 +771,6 @@ td {
         r: 3;
     }
     
-    /* Для таблицы методов маршрутизации */
-    .table-scroll table {
-        font-size: 12px;
-    }
-    
-    .table-scroll th,
-    .table-scroll td {
-        padding: 0.5rem;
-        white-space: normal; /* Разрешаем перенос слов в таблице */
-    }
     svg text[x="5%"],
     svg text[x="8%"],
     svg text[x="10%"] {
@@ -843,13 +834,18 @@ td {
     }
     
     .table-scroll table {
-        min-width: auto;
+        font-size: 12px;
     }
     
     .table-scroll th,
     .table-scroll td {
-        padding: 0.6rem 0.4rem;
-        font-size: 0.85rem;
+        padding: 0.5rem 0.3rem;
+    }
+    
+    /* Принудительный перенос длинных слов */
+    .table-scroll td {
+        word-break: break-word;
+        hyphens: auto;
     }
     svg text {
         font-size: 8px !important;
@@ -863,22 +859,8 @@ td {
         font-size: 7px !important;
     }
     
-    /* Еще больше уменьшаем таблицу */
-    .table-scroll table {
-        font-size: 11px;
-    }
-    
-    .table-scroll th,
-    .table-scroll td {
-        padding: 0.4rem 0.3rem;
-    }
 }
 
-/* Дополнительные улучшения читаемости */
-.content-card svg {
-    max-width: 100%;
-    height: auto;
-}
 
 /* Очень маленькие экраны */
 @media (max-width: 360px) {
